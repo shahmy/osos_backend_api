@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class AuthorBookStoreRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'isbn' => ['nullable', 'string'],
+            'title' => ['required', 'max:255', 'string'],
+            'description' => ['nullable', 'string'],
+            'price' => ['nullable', 'numeric'],
+            'cover_image' => ['image', 'max:1024', 'nullable'],
+        ];
+    }
+}
