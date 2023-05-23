@@ -60,11 +60,17 @@ class AuthorBooksController extends Controller
             ]);
 
             if ($request->hasFile('cover_image')) {
+
                 $validated['cover_image'] = $request
                     ->file('cover_image')
                     ->store('cover_image/public');
+                    $image = "data:image/png;base64,".base64_encode(file_get_contents($request->file('cover_image')->path()));
+                    $validated['cover_image'] = $image;
             }
 
+    //$validated['cover_image'] = base64_encode(file_get_contents($request->file('cover_image')->pat‌​h()));
+
+            
             $book = $author->books()->create($validated);
 
             return response()->json([

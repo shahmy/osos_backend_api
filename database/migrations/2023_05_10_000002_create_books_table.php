@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description')->nullable();
             $table->decimal('price')->nullable();
-            $table->string('cover_image')->nullable();
+            $table->longText('cover_image')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
